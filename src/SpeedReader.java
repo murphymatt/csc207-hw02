@@ -16,7 +16,7 @@ public class SpeedReader {
 		if(args.length != 5) {
 			System.out.println("Usage: SpeedReader <filename> <width> <height> <font size> <wpm>");
 			return;
-		}
+		} // if
 		
 		// Unpack command line arguments
 		String filename = args[0];
@@ -48,12 +48,15 @@ public class SpeedReader {
 			graphicsContext.drawString(currentStr, centerX - shiftFactor, centerY);
 			Thread.sleep(60000 / wpm);
 			panel.clear();
-		}
+		} // while
+		
 		generator.in.close();
-		graphicsContext.drawString("Words Read: " + generator.getWordCount(), 100, 100);
-		graphicsContext.drawString("Sentences Read: " + generator.getSentenceCount(), 100, 150);
+		graphicsContext.drawString("Words Read: " + generator.getWordCount(),
+			20, 10 + fontHeight);
+		graphicsContext.drawString("Sentences Read: " + generator.getSentenceCount(),
+			20, 10 + (fontHeight * 2));
 		Thread.sleep(10000);
-	}
+	} // void main(String[] args)
 	
 	public static int focusLetters(String str) {
 	    int len = str.length();
@@ -69,6 +72,5 @@ public class SpeedReader {
 	    } else {
 		return 4;
 	    }
-	}
-
+	} // int focusLetters(String str)
 }

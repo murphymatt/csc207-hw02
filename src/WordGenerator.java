@@ -24,7 +24,14 @@ public class WordGenerator {
 		char lastChar = nextStr.charAt(nextStr.length() - 1);
 				
 		this.words++;
-		if(lastChar == '.' || lastChar == '.' || lastChar == '?'){ this.sentences++; }
+		if(lastChar == '.' || lastChar == '!' || lastChar == '?') { 
+		    this.sentences++;
+		} else if (lastChar == '\"') {
+		    char prevChar = nextStr.charAt(nextStr.length() - 2);
+		    if(prevChar == '.' || prevChar == '!' || prevChar == '?') { 
+			    this.sentences++;
+		    }
+		}
 		
 		return nextStr;
 	}
