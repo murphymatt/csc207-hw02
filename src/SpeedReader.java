@@ -41,8 +41,11 @@ public class SpeedReader {
 		while(generator.hasNext()){
 			String currentStr = generator.next();
 			int strWidth = metrics.stringWidth(currentStr);
+			
+			int letterWidth = strWidth / currentStr.length();
+			int shiftFactor = letterWidth * focusLetters(currentStr);
 
-			graphicsContext.drawString(currentStr, centerX - (strWidth / 2), centerY);
+			graphicsContext.drawString(currentStr, centerX - shiftFactor, centerY);
 			Thread.sleep(60000 / wpm);
 			panel.clear();
 		}
@@ -50,6 +53,22 @@ public class SpeedReader {
 		graphicsContext.drawString("Words Read: " + generator.getWordCount(), 100, 100);
 		graphicsContext.drawString("Sentences Read: " + generator.getSentenceCount(), 100, 150);
 		Thread.sleep(10000);
+	}
+	
+	public static int focusLetters(String str) {
+	    int len = str.length();
+	    
+	    if (len <= 1) {
+		return 0;
+	    } else if (len <= 5) {
+		return 1;
+	    } else if (len <= 9) {
+		return 2;
+	    } else if (len <= 13) {
+		return 3;
+	    } else {
+		return 4;
+	    }
 	}
 
 }
