@@ -26,6 +26,7 @@ public class WordGenerator {
 		this.words++;
 		if(lastChar == '.' || lastChar == '!' || lastChar == '?') { 
 		    this.sentences++;
+		    // account for quotation marks in counting sentences
 		} else if (lastChar == '\"') {
 		    char prevChar = nextStr.charAt(nextStr.length() - 2);
 		    if(prevChar == '.' || prevChar == '!' || prevChar == '?') { 
